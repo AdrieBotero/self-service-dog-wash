@@ -1,75 +1,96 @@
-# React + TypeScript + Vite
+# Self-Service Dog Wash
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack self-service dog-wash kiosk and operations platform built with React, TypeScript, Node.js, REST APIs, and PostgreSQL.
 
-Currently, two official plugins are available:
+The application will allow a customer to pay for a timed wash session, choose different wash functions, monitor the remaining time, clean the tub, and complete the session.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This project is being built as an enterprise-style portfolio application to demonstrate frontend architecture, reusable React components, state management, backend development, database integration, testing, CI/CD, and cloud deployment.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project Goal
 
-## Expanding the ESLint configuration
+Build a touchscreen-friendly self-service dog-wash interface that guides a customer through the complete wash-session workflow.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+The first version will focus on the customer kiosk. A future version will include an administrative dashboard for managing stations, sessions, revenue, and equipment status.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Primary User
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+The primary user is a customer using a physical self-service dog-wash kiosk.
 
-```
+The interface should be:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- Easy to understand
+- Touchscreen-friendly
+- Accessible
+- Clear under time pressure
+- Designed with large buttons and visible status information
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Customer Workflow
 
-```
+The first customer workflow will be:
+
+
+Welcome
+    ↓
+Start Wash
+    ↓
+Payment
+    ↓
+Payment Approved
+    ↓
+Begin Session
+    ↓
+Active Wash Controls
+    ↓
+Clean Tub
+    ↓
+Session Complete
+
+
+
+
+
+---
+
+## Initial folder Architecture 
+src/
+├── app/
+│   └── App.tsx
+│
+├── pages/
+│   ├── WelcomePage/
+│   │   ├── WelcomePage.tsx
+│   │   └── WelcomePage.css
+│   │
+│   ├── PaymentPage/
+│   │   ├── PaymentPage.tsx
+│   │   └── PaymentPage.css
+│   │
+│   ├── WashSessionPage/
+│   │   ├── WashSessionPage.tsx
+│   │   └── WashSessionPage.css
+│   │
+│   ├── CleanTubPage/
+│   │   ├── CleanTubPage.tsx
+│   │   └── CleanTubPage.css
+│   │
+│   └── CompletionPage/
+│       ├── CompletionPage.tsx
+│       └── CompletionPage.css
+│
+├── components/
+│   ├── SessionTimer/
+│   ├── WashModeButton/
+│   └── PrimaryButton/
+│
+├── types/
+│   └── session.ts
+│
+├── assets/
+├── index.css
+└── main.tsx
