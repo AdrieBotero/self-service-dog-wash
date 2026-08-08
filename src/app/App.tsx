@@ -1,11 +1,16 @@
 
 
+import KioskLayout from '../layouts/KioskLayout/KioskLayout';
 import WelcomePage from '../pages/WelcomePage/WelcomePage'
 import './App.css'
 
 function App() {
 
-   return <WelcomePage />
+    return (
+    <KioskLayout>
+      <WelcomePage />
+    </KioskLayout>
+  );
 
 }
 
