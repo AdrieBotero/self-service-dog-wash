@@ -1,12 +1,13 @@
 import type { ReactNode } from "react";
 
 import KioskHeader from 'src/components/KioskHeader/KioskHeader';
-
 import KioskFooter from 'src/components/KioskFooter/KioskFooter';
+import "./KioskLayout.css";
+
 type KioskLayoutProps = {
   children: ReactNode;
 };
-import "./KioskLayout.css";
+
 function KioskLayout({ children }: KioskLayoutProps){
   return (
     <div className="kiosk-layout">
