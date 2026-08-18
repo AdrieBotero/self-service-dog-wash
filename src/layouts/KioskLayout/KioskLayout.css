@@ -1,0 +1,9 @@
+.kiosk-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.kiosk-content {
+  flex: 1;
+}

@@ -1,3 +1,5 @@
+import "./KioskHeader.css";
+
 function KioskHeader() {
     return (
         <header className="kiosk-header">
