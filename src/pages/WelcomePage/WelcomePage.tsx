@@ -1,4 +1,5 @@
 import "./WelcomePage.css"
+import { Clock, Tag } from "lucide-react";
 
 function WelcomePage() {
   return (
@@ -14,14 +15,31 @@ function WelcomePage() {
 
       <div className="session-info">
         <div className="info-card">
-          <p>Wash Time</p>
-          <strong>30</strong>
-          <span>Minutes</span>
+          <Clock
+            size={42} 
+            color="#0f9fa5"
+            strokeWidth={2} 
+            />
+          <div className="info-card-content">
+            <p>Wash Time</p>
+            <strong>30</strong>
+            <span>Minutes</span>
+
+          </div>
+
         </div>
 
         <div className="info-card">
-          <p>Price</p>
-          <strong>$25.00</strong>
+          <Tag
+          size={42} 
+            color="#0f9fa5"
+            strokeWidth={2} />
+          <div className="info-card-content">
+            <p>Price</p>
+            <strong>$25.00</strong>
+
+          </div>
+
         </div>
       </div>
 

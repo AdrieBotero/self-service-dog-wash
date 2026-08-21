@@ -33,6 +33,11 @@
   letter-spacing: 0.15em;
   color: #0fa3a8;
 }
+.info-card-content  {
+  display: flex;
+  flex-direction: column;
+
+}
 
 .description {
   margin: 0;
@@ -53,12 +58,31 @@
   padding: 24px;
   border: 1px solid #d7e9ef;
   border-radius: 16px;
+  display: flex;
+  gap: 20px;
+
+}
+.info-card strong{
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  padding-top: 10px;
+}
+.info-card span {
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  padding-top: 10px;
+  
 }
 .info-card p {
   color: #0f9fa5;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.05em;
+  
 }
 .welcome-page button {
   
