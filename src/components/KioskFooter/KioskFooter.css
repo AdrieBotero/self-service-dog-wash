@@ -3,4 +3,27 @@
   justify-content: space-between;
   align-items: center;
   padding: 24px 40px;
+  background-color: #0b2d5c;
+  color: #fff;
 }
+.kiosk-safety-warning {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.safety-text {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.safety-text  h2{
+  margin: 0;
+  font-weight: 500;
+  
+}
+.safety-text p {
+  margin: 0;
+}
+
+

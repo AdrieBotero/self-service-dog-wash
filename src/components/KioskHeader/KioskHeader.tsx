@@ -1,11 +1,16 @@
 import "./KioskHeader.css";
+import dogWashIcon from "../../assets/dog-wash-icon-image.png";
 
 function KioskHeader() {
     return (
         <header className="kiosk-header">
             <div className="kiosk-brand">
                 <div className="brand-logo" aria-hidden="true">
-                    🐶
+                    <img
+                        src={dogWashIcon}
+                        alt="PupWash Station"
+                        className="kiosk-logo"
+                    />
                 </div>
 
                 <div className="brand-content">
