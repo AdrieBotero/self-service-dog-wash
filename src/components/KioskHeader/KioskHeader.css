@@ -11,3 +11,24 @@
   object-fit: contain;
   border-radius: 50%;
 }
+
+.kiosk-brand{
+  display: flex ;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  gap: 20px;
+
+}
+.brand-content{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 1px;
+}
+.brand-name{
+  margin: 0;
+}
+.brand-content p{
+  margin: 0;
+}
