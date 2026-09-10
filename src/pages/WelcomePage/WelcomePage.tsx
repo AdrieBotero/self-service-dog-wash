@@ -1,7 +1,17 @@
+import { useNavigate } from "react-router-dom";
 import "./WelcomePage.css"
 import { Clock, Tag } from "lucide-react";
 
+
+
 function WelcomePage() {
+  const navigate = useNavigate();
+
+  const handleStartWash = () => {
+    navigate("/payment");
+  };
+
+
   return (
 
     <section className="welcome-page">
@@ -16,10 +26,10 @@ function WelcomePage() {
       <div className="session-info">
         <div className="info-card">
           <Clock
-            size={42} 
+            size={42}
             color="#0f9fa5"
-            strokeWidth={2} 
-            />
+            strokeWidth={2}
+          />
           <div className="info-card-content">
             <p>Wash Time</p>
             <strong>30</strong>
@@ -31,7 +41,7 @@ function WelcomePage() {
 
         <div className="info-card">
           <Tag
-          size={42} 
+            size={42}
             color="#0f9fa5"
             strokeWidth={2} />
           <div className="info-card-content">
@@ -43,7 +53,12 @@ function WelcomePage() {
         </div>
       </div>
 
-      <button type="button">Start Wash</button>
+      <button
+        type="button"
+        onClick={handleStartWash}
+      >
+        Start Wash
+      </button>
 
       <p className="start-instruction">
         Tap Start Wash to begin
