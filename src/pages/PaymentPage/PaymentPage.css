@@ -1,0 +1,87 @@
+.payment-page {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 20px;
+  padding: 32px;
+}
+
+.payment-header {
+  text-align: center;
+}
+
+.payment-header h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+}
+
+.payment-header p {
+  margin: 8px 0 0;
+  font-size: 18px;
+}
+
+.payment-summary {
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.payment-label {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.payment-price {
+  margin: 8px 0 0;
+  font-size: 42px;
+  font-weight: 700;
+  color: #20c7c7;
+}
+
+.payment-terminal {
+  width: 100%;
+  max-width: 500px;
+
+  padding: 40px 24px;
+
+  border: 2px solid #20c7c7;
+  border-radius: 12px;
+
+  text-align: center;
+}
+
+.payment-terminal-title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.payment-terminal-text {
+  margin: 10px 0 0;
+  font-size: 16px;
+}
+
+
+.payment-back-button {
+  padding: 10px 24px;
+
+  background: transparent;
+  color: white;
+
+  border: 1px solid #20c7c7;
+  border-radius: 8px;
+
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.payment-back-button:hover {
+  background: #20c7c7;
+}

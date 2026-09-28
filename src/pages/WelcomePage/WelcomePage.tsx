@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router-dom";
 import "./WelcomePage.css"
 import { Clock, Tag } from "lucide-react";
+import { useKioskNavigation } from "../../navidation/useKioskNavigation";
+import { KIOSK_ROUTES } from "../../navidation/routes";
+
 
 
 
 function WelcomePage() {
-  const navigate = useNavigate();
+   const { goTo } = useKioskNavigation();
 
   const handleStartWash = () => {
-    navigate("/payment");
+    goTo(KIOSK_ROUTES.PAYMENT);
   };
-
 
   return (
 
