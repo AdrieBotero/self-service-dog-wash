@@ -21,3 +21,10 @@ const paymentSlice = createSlice({
         }
     }
 });
+
+export const {
+  paymentStarted,
+  paymentApproved
+} = paymentSlice.actions;
+
+export default paymentSlice.reducer;
