@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 
 import "./PaymentPage.css";
-import { paymentStarted } from "../../store/paymentSlice";
+import { paymentStarted, paymentApproved, paymentDecline } from "../../store/paymentSlice";
+import { processPayment } from "../../services/paymentApi";
 
 function PaymentPage() {
     const paymentStatus = useSelector((state: RootState) => state.payment.status);
@@ -17,8 +18,16 @@ function PaymentPage() {
         goTo(KIOSK_ROUTES.WELCOME);
     };
 
-    const handlePayment = () => {
+    const handlePayment = async () => {
         dispatch(paymentStarted());
+        const paymentResponse = await processPayment();
+        if (paymentResponse.status === "approved") {
+            dispatch(paymentApproved(paymentResponse.transactionId));
+        } else {
+            dispatch(paymentDecline());
+        }
+
+        console.log(paymentResponse);
     }
 
     return (
@@ -29,7 +38,7 @@ function PaymentPage() {
             <p>$25.00</p>
 
             <div className="payment-terminal"
-            onClick={handlePayment}>
+                onClick={handlePayment}>
                 <p>Tap, Insert, or Swipe Card</p>
                 <p>Payment status: {paymentStatus}</p>
             </div>

@@ -1,6 +1,8 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 
 app.use(express.json());
 
@@ -15,7 +17,7 @@ app.post('/api/payments', (req, res) => {
 
     res.json({
         status: 'approved', 
-        tratransactionId: 'txn_12345'
+        transactionId: 'txn_12345'
     });
 });
 app.listen(PORT, () => {
