@@ -12,9 +12,9 @@ app.get('/api/health', (req, res) => {
         status: 'ok'
     });
 });
-app.post('/api/payments', (req, res) => {
+app.post('/api/payments', async (req, res) => {
     console.log(req.body);
-
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     res.json({
         status: 'approved', 
         transactionId: 'txn_12345'

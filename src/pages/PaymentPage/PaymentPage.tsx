@@ -10,6 +10,7 @@ import { processPayment } from "../../services/paymentApi";
 
 function PaymentPage() {
     const paymentStatus = useSelector((state: RootState) => state.payment.status);
+    const isPaymentDisabled = paymentStatus === "processing" || paymentStatus === "approved";
 
     const dispatch = useDispatch();
     const { goTo } = useKioskNavigation();
@@ -30,6 +31,18 @@ function PaymentPage() {
         console.log(paymentResponse);
     }
 
+    const getPaymentMessage = ()=> {
+        if(paymentStatus === 'processing'){
+            return 'Processing Payment...';
+
+        }
+         if(paymentStatus === 'approved'){
+            return 'Payment Approved ✓';
+            
+        }
+        return 'Tap, Insert, or Swipe Card';
+    }
+
     return (
         <section className="payment-page">
             <h1>Payment</h1>
@@ -37,11 +50,13 @@ function PaymentPage() {
             <p>30 Minute Wash</p>
             <p>$25.00</p>
 
-            <div className="payment-terminal"
-                onClick={handlePayment}>
-                <p>Tap, Insert, or Swipe Card</p>
-                <p>Payment status: {paymentStatus}</p>
-            </div>
+            <button className="payment-terminal"
+                onClick={handlePayment}
+                disabled={isPaymentDisabled}
+            >
+                <p>{getPaymentMessage()}</p>
+
+            </button>
 
             <button type="button"
                 onClick={handlePaymentBackButton}
