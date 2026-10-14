@@ -24,7 +24,7 @@ const paymentSlice = createSlice({
             state.status = "approved";
             state.transactionId = action.payload
         },
-        paymentDecline: (state) => {
+        paymentDeclined: (state) => {
             state.status = "declined";
         }
     }
@@ -32,7 +32,7 @@ const paymentSlice = createSlice({
 
 export const {
   paymentStarted,
-  paymentApproved, paymentDecline
+  paymentApproved, paymentDeclined
 } = paymentSlice.actions;
 
 export default paymentSlice.reducer;

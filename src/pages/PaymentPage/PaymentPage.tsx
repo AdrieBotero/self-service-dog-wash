@@ -3,9 +3,10 @@ import { useKioskNavigation } from "../../navidation/useKioskNavigation";
 import { useDispatch, useSelector } from "react-redux";
 
 import type { RootState } from "../../store/store";
+import { useEffect } from "react";
 
 import "./PaymentPage.css";
-import { paymentStarted, paymentApproved, paymentDecline } from "../../store/paymentSlice";
+import { paymentStarted, paymentApproved, paymentDeclined } from "../../store/paymentSlice";
 import { processPayment } from "../../services/paymentApi";
 
 function PaymentPage() {
@@ -18,6 +19,11 @@ function PaymentPage() {
     const handlePaymentBackButton = () => {
         goTo(KIOSK_ROUTES.WELCOME);
     };
+    useEffect(() => {
+        if (paymentStatus === "approved") {
+            goTo(KIOSK_ROUTES.WASH);
+        }
+    }, [paymentStatus]);
 
     const handlePayment = async () => {
         dispatch(paymentStarted());
@@ -25,20 +31,20 @@ function PaymentPage() {
         if (paymentResponse.status === "approved") {
             dispatch(paymentApproved(paymentResponse.transactionId));
         } else {
-            dispatch(paymentDecline());
+            dispatch(paymentDeclined());
         }
 
         console.log(paymentResponse);
     }
 
-    const getPaymentMessage = ()=> {
-        if(paymentStatus === 'processing'){
+    const getPaymentMessage = () => {
+        if (paymentStatus === 'processing') {
             return 'Processing Payment...';
 
         }
-         if(paymentStatus === 'approved'){
+        if (paymentStatus === 'approved') {
             return 'Payment Approved ✓';
-            
+
         }
         return 'Tap, Insert, or Swipe Card';
     }
@@ -54,7 +60,9 @@ function PaymentPage() {
                 onClick={handlePayment}
                 disabled={isPaymentDisabled}
             >
+                {paymentStatus === 'declined' && (<p>Payment Declined - Please Try Again</p>)}
                 <p>{getPaymentMessage()}</p>
+                {paymentStatus !== 'idle' && (<p>Payment status: {paymentStatus}</p>)}
 
             </button>
 
