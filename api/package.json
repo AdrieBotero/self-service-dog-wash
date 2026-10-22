@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "node-server": "tsx watch src/server.ts"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+    "scripts": {
+    "node-server": "tsx watch src/server.ts"
+  },
+
   "dependencies": {
+    "@pupwash/shared-types": "1.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1"
   },

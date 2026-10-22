@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 
 import { Route, Routes, useNavigate } from "react-router-dom";
 import './App.css'
+import { WashingSessionPage } from '../pages/WasSessionPage/WashingSessionPage';
 
 
 
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' element={<WelcomePage />} />
         <Route path='/payment' element={<PaymentPage />} />
+        <Route path='/wash' element={<WashingSessionPage />} />
       </Routes>
     </KioskLayout>
   );
