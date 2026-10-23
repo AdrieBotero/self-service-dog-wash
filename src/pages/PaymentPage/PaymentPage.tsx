@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 import "./PaymentPage.css";
 import { paymentStarted, paymentApproved, paymentDeclined } from "../../store/paymentSlice";
-import { processPayment } from "../../services/paymentApi";
+import { processPayment } from "../../services/paymentService";
 
 function PaymentPage() {
     const paymentStatus = useSelector((state: RootState) => state.payment.status);

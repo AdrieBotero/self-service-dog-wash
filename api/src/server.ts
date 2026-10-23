@@ -6,7 +6,7 @@ import { WashSession } from "@pupwash/shared-types";
 const washSession: WashSession = {
     sessionId: "session_123",
     stationId: "station_01",
-    status: "Active",
+    status: "active",
     activeMode: "soap",
     timeRemaining: 1800,
 };

@@ -1,6 +1,21 @@
+import type { WashMode } from "@pupwash/shared-types/src/washSession";
 import { WashControl } from "../../components/WashControl/WashControl";
+import { updateWashMode } from "../../services/washSessionService";
+import { useDispatch, useSelector } from "react-redux";
+import { setWashSession } from "../../store/washSessionSlice";
+
+import type { RootState } from "../../store/store";
 
 export function WashingSessionPage() {
+
+    const dispatch = useDispatch();
+    const washSession = useSelector((state: RootState)=> state.washSession.session)
+
+    async function handleModeSelect(mode: WashMode): Promise<void> {
+        const updatedSession = await updateWashMode(mode)
+        dispatch(setWashSession(updatedSession))
+        console.log(updatedSession);
+    }
 
     return (
         <section className="washing-session">
@@ -23,11 +38,11 @@ export function WashingSessionPage() {
             </div>
 
             <div className="washing-session__controls">
-                <WashControl label="Soap" />
-                <WashControl label="Rinse" />
-                <WashControl label="Conditioner" />
-                <WashControl label="Blow Dryer" />
-                <WashControl label="Clean Tub" />
+                <WashControl label="Soap" mode={"soap"} isActive={washSession?.activeMode === 'soap'} onSelectMode={handleModeSelect} />
+                <WashControl label="Rinse" mode={"rinse"} isActive={washSession?.activeMode === 'rinse'} onSelectMode={handleModeSelect} />
+                <WashControl label="Conditioner" mode={"conditioner"} isActive={washSession?.activeMode === 'conditioner'} onSelectMode={handleModeSelect} />
+                <WashControl label="Blow Dryer" mode={"blowDryer"} isActive={washSession?.activeMode === 'blowDryer'} onSelectMode={handleModeSelect} />
+                <WashControl label="Clean Tub" mode={"cleanTub"}isActive={washSession?.activeMode === 'cleanTub'}  onSelectMode={handleModeSelect} />
             </div>
         </section>
     );
