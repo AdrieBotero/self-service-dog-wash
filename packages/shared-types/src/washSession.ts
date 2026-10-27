@@ -7,5 +7,6 @@ export interface WashSession {
     stationId: string;
     status: WashSessionStatus;
     activeMode: WashMode;
-    timeRemaining: number;
+    washStartedAt: string;
+    washEndedAt: string
 }

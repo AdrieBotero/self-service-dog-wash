@@ -2,13 +2,16 @@ import express from "express";
 import cors from "cors";
 
 import { WashSession } from "@pupwash/shared-types";
-
+const WASH_SESSION_DURATION_MINUTES = 30;
+const startedAt = new Date();
+const endsAt = new Date(startedAt.getTime() + WASH_SESSION_DURATION_MINUTES * 60 * 1000);
 const washSession: WashSession = {
     sessionId: "session_123",
     stationId: "station_01",
     status: "active",
     activeMode: "soap",
-    timeRemaining: 1800,
+    washStartedAt: startedAt.toISOString(),
+    washEndedAt: endsAt.toISOString()
 };
 
 const app = express();

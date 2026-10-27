@@ -6,16 +6,16 @@ interface WashControlProps {
   mode: WashMode;
   isActive: boolean;
   onSelectMode: (mode: WashMode) => void;
-  
+
 }
 
 
 
 export function WashControl({ label, mode, isActive, onSelectMode }: WashControlProps) {
   return (
-    <button className="wash-control" type="button" onClick={()=>onSelectMode(mode)} >
+    <button className="wash-control" type="button" onClick={() => onSelectMode(mode)} disabled={isActive ? true : false}>
       <p>{label}</p>
-      <span>{isActive? "ON": "OFF"}</span>
+      <span>{isActive ? "ON" : "OFF"}</span>
     </button>
   );
 }
