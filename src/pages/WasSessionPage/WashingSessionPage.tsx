@@ -1,6 +1,6 @@
 import type { WashMode } from "@pupwash/shared-types/src/washSession";
 import { WashControl } from "../../components/WashControl/WashControl";
-import { getWashSession, updateWashMode } from "../../services/washSessionService";
+import { getWashSession, updateWashMode, completeWashSession } from "../../services/washSessionService";
 import { useDispatch, useSelector } from "react-redux";
 import { setWashSession } from "../../store/washSessionSlice";
 
@@ -57,11 +57,13 @@ export function WashingSessionPage() {
     }, []);
 
     useEffect(() => {
-        const interval = setInterval(() => {
+        if (!endTime || washSession?.status === "completed") {
+            return;
+        }
+        const interval = setInterval(async () => {
             //If we don't have a endTime set from the server, stop here. Don't create an interval.
-            if (!endTime) {
-                return;
-            }
+
+
             const now = new Date().getTime();
 
             if (now < endTime) {
@@ -71,6 +73,9 @@ export function WashingSessionPage() {
 
             setCurrentTime(endTime);
             clearInterval(interval);
+
+            const completedSession = await completeWashSession();
+            dispatch(setWashSession(completedSession));
         }, 1000);
 
         return () => {

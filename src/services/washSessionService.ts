@@ -2,12 +2,25 @@ import type { WashMode, WashSession } from "@pupwash/shared-types";
 
 
 
-export const getWashSession = async () : Promise<WashSession>=>{
+export const getWashSession = async (): Promise<WashSession> => {
     const response = await fetch("http://localhost:3000/api/wash-sessions/session_123");
 
     const washSession = await response.json();
-    
+
     return washSession;
+};
+
+export const completeWashSession = async (): Promise<WashSession> => {
+    const response = await fetch(
+        "http://localhost:3000/api/wash-sessions/session_123/complete",
+        {
+            method: "PATCH",
+        }
+    );
+
+    const completedSession = await response.json();
+
+    return completedSession;
 };
 
 export const updateWashMode = async (activeMode: WashMode): Promise<WashSession> => {

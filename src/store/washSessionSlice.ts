@@ -1,10 +1,10 @@
-import { createSlice, type PayloadAction  } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 
 import type { WashSession } from "@pupwash/shared-types";
 
 interface WashSessionState {
-  session: WashSession | null;
+    session: WashSession | null;
 }
 
 const initialState: WashSessionState = {
@@ -12,16 +12,17 @@ const initialState: WashSessionState = {
 }
 
 const washSessionSlice = createSlice({
-    name: 'washSession', 
-    initialState, 
+    name: 'washSession',
+    initialState,
     reducers: {
-        setWashSession : (state, action: PayloadAction<WashSession>) => {
+        setWashSession: (state, action: PayloadAction<WashSession>) => {
             state.session = action.payload
 
-        },
-    }, 
+        }
+
+    },
 });
 
-export const {setWashSession} = washSessionSlice.actions
+export const { setWashSession } = washSessionSlice.actions
 
 export default washSessionSlice.reducer;
