@@ -37,6 +37,12 @@ app.get("/api/wash-sessions/:sessionId", (req, res) => {
     res.json(washSession);
 });
 
+app.patch("/api/wash-sessions/:sessionId/complete", (req, res) => {
+  washSession.status = "completed";
+
+  res.json(washSession);
+});
+
 app.patch("/api/wash-sessions/:sessionId", (req, res) => {
     const { activeMode } = req.body;
 
