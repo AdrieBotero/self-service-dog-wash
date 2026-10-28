@@ -7,6 +7,19 @@ import { setWashSession } from "../../store/washSessionSlice";
 import type { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 
+/**
+ * Formats a duration in seconds into a MM:SS time string.
+ *
+ * @param seconds - The total number of seconds to format.
+ * @returns The formatted time as a MM:SS string.
+ */
+function formatTime(seconds: number) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+
 export function WashingSessionPage() {
 
     const dispatch = useDispatch();
@@ -18,11 +31,12 @@ export function WashingSessionPage() {
     const [currentTime, setCurrentTime] = useState(new Date().getTime());
 
 
-    const timeRemainingInSeconds = Math.floor(
-        (endTime - currentTime) / 1000
+    const timeRemainingInSeconds = Math.max(0,
+        Math.floor(
+            (endTime - currentTime) / 1000
+        )
     );
 
-    setInterval(() => { setCurrentTime() }, 1000);
 
     async function handleModeSelect(mode: WashMode): Promise<void> {
         const updatedSession = await updateWashMode(mode)
@@ -44,13 +58,25 @@ export function WashingSessionPage() {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentTime(new Date().getTime());
+            //If we don't have a endTime set from the server, stop here. Don't create an interval.
+            if (!endTime) {
+                return;
+            }
+            const now = new Date().getTime();
+
+            if (now < endTime) {
+                setCurrentTime(now);
+                return;
+            }
+
+            setCurrentTime(endTime);
+            clearInterval(interval);
         }, 1000);
 
         return () => {
             clearInterval(interval);
         };
-    }, []);
+    }, [endTime, washSession]);
 
     return (
         <section className="washing-session">
@@ -60,7 +86,7 @@ export function WashingSessionPage() {
 
                     <h1>30:00</h1>
 
-                    <p>Time Remaining</p>
+                    <p>{formatTime(timeRemainingInSeconds)}</p>
                 </div>
 
                 <div className="washing-session__details">
