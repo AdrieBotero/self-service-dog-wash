@@ -7,6 +7,8 @@ import { setWashSession } from "../../store/washSessionSlice";
 import type { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { WashComplete } from "../../components/WashComplete/WashComplete";
+import { useKioskNavigation } from "../../navidation/useKioskNavigation";
+import { KIOSK_ROUTES } from "../../navidation/routes";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -24,6 +26,7 @@ function formatTime(seconds: number) {
 export function WashingSessionPage() {
 
     const dispatch = useDispatch();
+    const { goTo } = useKioskNavigation();
     const washSession = useSelector((state: RootState) => state.washSession.session);
     const isSessionCompleted = washSession?.status === "completed";
     const endTime = washSession
@@ -99,6 +102,22 @@ export function WashingSessionPage() {
             clearTimeout(timeout);
         };
     }, [isSessionCompleted]);
+
+
+    useEffect(() => {
+        if (!showWashComplete) {
+            return;
+        }
+
+        const timeout = setTimeout(() => {
+            goTo(KIOSK_ROUTES.WELCOME)
+        }, 5000);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [showWashComplete]);
+
 
     if (showWashComplete) {
         return <WashComplete />;
