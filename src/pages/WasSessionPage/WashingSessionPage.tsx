@@ -6,6 +6,7 @@ import { setWashSession } from "../../store/washSessionSlice";
 
 import type { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
+import { WashComplete } from "../../components/WashComplete/WashComplete";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -29,6 +30,7 @@ export function WashingSessionPage() {
         ? new Date(washSession.washEndedAt).getTime()
         : 0;
 
+    const [showWashComplete, setShowWashComplete] = useState(false);
     const [currentTime, setCurrentTime] = useState(new Date().getTime());
 
 
@@ -41,7 +43,7 @@ export function WashingSessionPage() {
 
     async function handleModeSelect(mode: WashMode): Promise<void> {
         const updatedSession = await updateWashMode(mode)
-        dispatch(setWashSession(updatedSession))
+        dispatch(setWashSession(updatedSession));
         console.log(updatedSession);
     }
 
@@ -49,7 +51,7 @@ export function WashingSessionPage() {
         console.log("WashingSessionPage rendered");
         async function loadWashSession() {
             const washSession = await getWashSession();
-            dispatch(setWashSession(washSession))
+            dispatch(setWashSession(washSession));
 
         }
 
@@ -82,6 +84,25 @@ export function WashingSessionPage() {
             clearInterval(interval);
         };
     }, [endTime, dispatch]);
+
+
+    useEffect(() => {
+        if (!isSessionCompleted) {
+            return;
+        }
+
+        const timeout = setTimeout(() => {
+            setShowWashComplete(true);
+        }, 5000);
+
+        return () => {
+            clearTimeout(timeout);
+        };
+    }, [isSessionCompleted]);
+
+    if (showWashComplete) {
+        return <WashComplete />;
+    }
 
     return (
         <section className="washing-session">
