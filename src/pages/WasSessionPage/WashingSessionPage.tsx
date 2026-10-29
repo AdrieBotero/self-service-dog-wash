@@ -24,6 +24,7 @@ export function WashingSessionPage() {
 
     const dispatch = useDispatch();
     const washSession = useSelector((state: RootState) => state.washSession.session);
+    const isSessionCompleted = washSession?.status === "completed";
     const endTime = washSession
         ? new Date(washSession.washEndedAt).getTime()
         : 0;
@@ -57,12 +58,11 @@ export function WashingSessionPage() {
     }, []);
 
     useEffect(() => {
-        if (!endTime || washSession?.status === "completed") {
+        if (!endTime) {
             return;
         }
         const interval = setInterval(async () => {
             //If we don't have a endTime set from the server, stop here. Don't create an interval.
-
 
             const now = new Date().getTime();
 
@@ -81,17 +81,17 @@ export function WashingSessionPage() {
         return () => {
             clearInterval(interval);
         };
-    }, [endTime, washSession]);
+    }, [endTime, dispatch]);
 
     return (
         <section className="washing-session">
             <div className="washing-session__top">
                 <div className="washing-session__timer">
-                    <p>WASH SESSION ACTIVE</p>
+                    <p>{isSessionCompleted ? "WASH SESSION COMPLETED" : "WASH SESSION ACTIVE"}</p>
 
-                    <h1>30:00</h1>
+                    <h1>{formatTime(timeRemainingInSeconds)}</h1>
 
-                    <p>{formatTime(timeRemainingInSeconds)}</p>
+                    <p>time remaining</p>
                 </div>
 
                 <div className="washing-session__details">
@@ -104,11 +104,11 @@ export function WashingSessionPage() {
             </div>
 
             <div className="washing-session__controls">
-                <WashControl label="Soap" mode={"soap"} isActive={washSession?.activeMode === 'soap'} onSelectMode={handleModeSelect} />
-                <WashControl label="Rinse" mode={"rinse"} isActive={washSession?.activeMode === 'rinse'} onSelectMode={handleModeSelect} />
-                <WashControl label="Conditioner" mode={"conditioner"} isActive={washSession?.activeMode === 'conditioner'} onSelectMode={handleModeSelect} />
-                <WashControl label="Blow Dryer" mode={"blowDryer"} isActive={washSession?.activeMode === 'blowDryer'} onSelectMode={handleModeSelect} />
-                <WashControl label="Clean Tub" mode={"cleanTub"} isActive={washSession?.activeMode === 'cleanTub'} onSelectMode={handleModeSelect} />
+                <WashControl label="Soap" mode={"soap"} isActive={washSession?.activeMode === 'soap'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
+                <WashControl label="Rinse" mode={"rinse"} isActive={washSession?.activeMode === 'rinse'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
+                <WashControl label="Conditioner" mode={"conditioner"} isActive={washSession?.activeMode === 'conditioner'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
+                <WashControl label="Blow Dryer" mode={"blowDryer"} isActive={washSession?.activeMode === 'blowDryer'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
+                <WashControl label="Clean Tub" mode={"cleanTub"} isActive={washSession?.activeMode === 'cleanTub'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
             </div>
         </section>
     );

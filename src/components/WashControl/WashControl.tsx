@@ -5,15 +5,15 @@ interface WashControlProps {
   label: string;
   mode: WashMode;
   isActive: boolean;
+  isControlDisabled: boolean; 
   onSelectMode: (mode: WashMode) => void;
-
 }
 
 
 
-export function WashControl({ label, mode, isActive, onSelectMode }: WashControlProps) {
+export function WashControl({ label, mode, isActive, isControlDisabled, onSelectMode }: WashControlProps) {
   return (
-    <button className="wash-control" type="button" onClick={() => onSelectMode(mode)} disabled={isActive ? true : false}>
+    <button className="wash-control" type="button" onClick={() => onSelectMode(mode)} disabled={isActive || isControlDisabled}>
       <p>{label}</p>
       <span>{isActive ? "ON" : "OFF"}</span>
     </button>
