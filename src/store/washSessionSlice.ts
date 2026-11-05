@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
-
+import { resetApplication } from "./applicationActions";
 
 import type { WashSession } from "@pupwash/shared-types";
 
@@ -21,6 +21,11 @@ const washSessionSlice = createSlice({
         }
 
     },
+    extraReducers: (builder) => {
+        builder.addCase(resetApplication, () => {
+            return initialState;
+        });
+    }
 });
 
 export const { setWashSession } = washSessionSlice.actions

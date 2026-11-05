@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { WashComplete } from "../../components/WashComplete/WashComplete";
 import { useKioskNavigation } from "../../navidation/useKioskNavigation";
 import { KIOSK_ROUTES } from "../../navidation/routes";
+import { resetApplication } from "../../store/applicationActions";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -110,6 +111,7 @@ export function WashingSessionPage() {
         }
 
         const timeout = setTimeout(() => {
+            dispatch(resetApplication());
             goTo(KIOSK_ROUTES.WELCOME)
         }, 5000);
 
