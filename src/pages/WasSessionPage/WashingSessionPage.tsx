@@ -10,6 +10,9 @@ import { WashComplete } from "../../components/WashComplete/WashComplete";
 import { useKioskNavigation } from "../../navidation/useKioskNavigation";
 import { KIOSK_ROUTES } from "../../navidation/routes";
 import { resetApplication } from "../../store/applicationActions";
+import "./WashingSessionPage.css";
+
+import willowImage from "../../assets/willow.png";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -134,16 +137,24 @@ export function WashingSessionPage() {
 
     return (
         <section className="washing-session">
-            <div className="washing-session__top">
-                <div className="washing-session__timer">
+            <div className="washing-session-top">
+                <div className="washing-session-dog">
+                    <img
+                        src={willowImage}
+                        alt="Willow the Airedale Terrier"
+                        className="washing-session-dog-image"
+                    />
+                </div>
+
+                <div className="washing-session-timer">
                     <p>{isSessionCompleted ? "WASH SESSION COMPLETED" : "WASH SESSION ACTIVE"}</p>
 
                     <h1>{formatTime(timeRemainingInSeconds)}</h1>
 
-                    <p>time remaining</p>
+                    <p>Time Remaining</p>
                 </div>
 
-                <div className="washing-session__details">
+                <div className="washing-session-details">
                     <h2>Station 01</h2>
 
                     <p>30 Minute Wash Session</p>
