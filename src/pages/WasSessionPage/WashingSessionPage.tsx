@@ -1,6 +1,6 @@
 import type { WashMode } from "@pupwash/shared-types/src/washSession";
 import { WashControl } from "../../components/WashControl/WashControl";
-import { getWashSession, updateWashMode, completeWashSession } from "../../services/washSessionService";
+import { getWashSession, updateWashMode, completeWashSession, resetWashSession } from "../../services/washSessionService";
 import { useDispatch, useSelector } from "react-redux";
 import { setWashSession } from "../../store/washSessionSlice";
 
@@ -110,9 +110,16 @@ export function WashingSessionPage() {
             return;
         }
 
-        const timeout = setTimeout(() => {
-            dispatch(resetApplication());
-            goTo(KIOSK_ROUTES.WELCOME)
+        const timeout = setTimeout(async () => {
+
+            try {
+                await resetWashSession();
+
+                dispatch(resetApplication());
+                goTo(KIOSK_ROUTES.WELCOME);
+            } catch (error) {
+                console.error("Failed to reset wash session:", error);
+            }
         }, 5000);
 
         return () => {

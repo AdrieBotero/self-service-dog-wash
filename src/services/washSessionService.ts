@@ -43,3 +43,16 @@ export const updateWashMode = async (activeMode: WashMode): Promise<WashSession>
     return washSession;
 
 };
+
+export const resetWashSession = async (): Promise<void> => {
+    const response = await fetch(
+        "http://localhost:3000/api/wash-sessions/session_123",
+        {
+            method: "DELETE"
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to reset wash session");
+    }
+};

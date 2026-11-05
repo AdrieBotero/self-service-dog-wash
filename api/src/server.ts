@@ -72,6 +72,36 @@ app.patch("/api/wash-sessions/:sessionId/complete", (req, res) => {
     res.json(washSession);
 });
 
+app.delete("/api/wash-sessions/:sessionId", (req, res) => {
+    if (!washSession) {
+        return res.status(404).json({
+            message: "Wash session does not exist"
+        });
+    }
+
+    /*********************************************** */
+    if (washSession.sessionId !== req.params.sessionId) {
+        return res.status(404).json({
+            message: "Wash session not found"
+        });
+    }
+
+
+    /********************************************* */
+    if (washSession.status !== "completed") {
+        return res.status(409).json({
+            message: "Cannot reset an active wash session"
+        });
+    }
+
+    /************************************************ */
+    washSession = null;
+
+    return res.status(200).json({
+        message: "Wash session reset successfully"
+    });
+});
+
 
 app.listen(PORT, () => {
     console.log(`API server is running on port ${PORT}`);
