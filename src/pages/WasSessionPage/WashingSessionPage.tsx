@@ -13,6 +13,7 @@ import { resetApplication } from "../../store/applicationActions";
 import "./WashingSessionPage.css";
 
 import willowImage from "../../assets/willow.png";
+import { Clock } from "lucide-react";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -157,7 +158,10 @@ export function WashingSessionPage() {
                 <div className="washing-session-details">
                     <h2>Station 01</h2>
 
-                    <p>30 Minute Wash Session</p>
+                    <p className="washing-session-detail-row">
+                        <Clock size={20} />
+                        <span>30 Minute Wash Session</span>
+                    </p>
                     <p>$25.00</p>
                     <p>Paid • Enjoy your wash!</p>
                 </div>

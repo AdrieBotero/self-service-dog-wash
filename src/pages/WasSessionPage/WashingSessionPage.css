@@ -6,8 +6,40 @@
     width: 100%;
     margin-bottom: 40px;
 }
+
 .washing-session-details {
+
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
     min-width: 0;
+    padding: 24px;
+
+    background: #192638;
+    border: 2px solid #2a3c52;
+    border-radius: 20px;
+}
+
+.washing-session-details h2 {
+    margin: 0;
+    padding-bottom: 16px;
+
+    color: #ffffff;
+    font-size: 24px;
+    border-bottom: 1px solid #34465c;
+}
+
+.washing-session-details p {
+    margin: 0;
+    color: #aab4c5;
+    font-size: 18px;
+    font-size: clamp(12px, 2.1vw, 18px);
+}
+
+.washing-session-details p:last-child {
+    color: #86efac;
+    font-weight: 600;
 }
 
 .washing-session-dog {
@@ -39,6 +71,7 @@
     margin: 0;
     color: #aab4c5;
     font-size: 18px;
+    
 }
 
 .washing-session-timer p:first-child {
@@ -53,4 +86,27 @@
     font-weight: 800;
     line-height: 1;
     font-variant-numeric: tabular-nums;
+}
+
+.washing-session {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 24px 40px;
+}
+
+.washing-session-detail-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.washing-session-detail-row span {
+    white-space: normal;
+    min-width: 0;
+    
+}
+
+.washing-session-detail-row svg {
+    flex-shrink: 0;
 }
