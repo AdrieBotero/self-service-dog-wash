@@ -1,5 +1,6 @@
 import type { WashMode } from "@pupwash/shared-types";
 import { Bubbles, Droplet, PawPrint, Wind, Sparkles } from "lucide-react";
+import './WashControl.css'
 
 interface WashControlProps {
   label: string;
@@ -19,8 +20,10 @@ const washModeIcons = {
 
 
 export function WashControl({ label, mode, isActive, isControlDisabled, onSelectMode }: WashControlProps) {
+  const Icon = washModeIcons[mode];
   return (
-    <button className="wash-control" type="button" onClick={() => onSelectMode(mode)} disabled={isActive || isControlDisabled}>
+    <button className={`wash-control ${isActive? "is-active": ""}`} type="button" onClick={() => onSelectMode(mode)} disabled={isActive || isControlDisabled}>
+      <Icon size={40} />
       <p>{label}</p>
       <span className="wash-control-status">{isActive ? "ON" : "OFF"}</span>
     </button>

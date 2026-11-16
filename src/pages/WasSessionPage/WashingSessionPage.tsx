@@ -167,7 +167,7 @@ export function WashingSessionPage() {
                 </div>
             </div>
 
-            <div className="washing-session__controls">
+            <div className="washing-session-controls">
                 <WashControl label="Soap" mode={"soap"} isActive={washSession?.activeMode === 'soap'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
                 <WashControl label="Rinse" mode={"rinse"} isActive={washSession?.activeMode === 'rinse'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
                 <WashControl label="Conditioner" mode={"conditioner"} isActive={washSession?.activeMode === 'conditioner'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />

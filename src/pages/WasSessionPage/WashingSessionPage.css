@@ -110,3 +110,11 @@
 .washing-session-detail-row svg {
     flex-shrink: 0;
 }
+
+.washing-session-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+}

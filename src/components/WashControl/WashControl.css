@@ -1,0 +1,24 @@
+.wash-control-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    padding: 12px 0;
+
+    background: #34465c;
+    border-radius: 30px;
+
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+}
+.wash-control.is-active {
+    background: #0757a6;
+    border-color: #38bdf8;
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.35);
+}
+
+.wash-control:disabled {
+    /* We'll handle disabled styling separately */
+}
