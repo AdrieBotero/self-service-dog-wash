@@ -1,5 +1,5 @@
 import "./KioskHeader.css";
-import dogWashIcon from "../../assets/dog-wash-icon-image.png";
+import dogWashIcon from "../../assets/Willow-Sparkling-Bubble-Bath.png";
 
 function KioskHeader() {
     return (

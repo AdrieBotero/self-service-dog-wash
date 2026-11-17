@@ -23,7 +23,7 @@ export function WashControl({ label, mode, isActive, isControlDisabled, onSelect
   const Icon = washModeIcons[mode];
   return (
     <button className={`wash-control ${isActive? "is-active": ""}`} type="button" onClick={() => onSelectMode(mode)} disabled={isActive || isControlDisabled}>
-      <Icon size={40} />
+      <Icon size={40} className={`wash-control-icon wash-control-icon--${mode}`} />
       <p>{label}</p>
       <span className="wash-control-status">{isActive ? "ON" : "OFF"}</span>
     </button>

@@ -12,8 +12,8 @@ import { KIOSK_ROUTES } from "../../navidation/routes";
 import { resetApplication } from "../../store/applicationActions";
 import "./WashingSessionPage.css";
 
-import willowImage from "../../assets/willow.png";
-import { Clock } from "lucide-react";
+import willowImage from "../../assets/Willow-Sparkling-Bubble-Bath.png";
+import { Clock, Lightbulb } from "lucide-react";
 
 /**
  * Formats a duration in seconds into a MM:SS time string.
@@ -173,6 +173,16 @@ export function WashingSessionPage() {
                 <WashControl label="Conditioner" mode={"conditioner"} isActive={washSession?.activeMode === 'conditioner'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
                 <WashControl label="Blow Dryer" mode={"blowDryer"} isActive={washSession?.activeMode === 'blowDryer'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
                 <WashControl label="Clean Tub" mode={"cleanTub"} isActive={washSession?.activeMode === 'cleanTub'} isControlDisabled={isSessionCompleted} onSelectMode={handleModeSelect} />
+            </div>
+            <div className="washing-session__instructions">
+                <Lightbulb size={40} />
+
+                <div>
+                    <p>Select a wash option above to get started.</p>
+                    <span>
+                        You can switch between options anytime during your session.
+                    </span>
+                </div>
             </div>
         </section>
     );

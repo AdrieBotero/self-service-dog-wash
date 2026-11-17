@@ -22,3 +22,47 @@
 .wash-control:disabled {
     /* We'll handle disabled styling separately */
 }
+
+
+.wash-control {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    flex: 1;
+    min-width: 0;
+    padding: 24px 16px;
+
+    background: #192638;
+    border: 2px solid #2a3c52;
+    border-radius: 20px;
+
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.wash-control.is-active .wash-control-status {
+    background: #249ef5;
+}
+
+.wash-control-icon--soap {
+    color: #38bdf8;
+}
+
+.wash-control-icon--rinse {
+    color: #0ea5e9;
+}
+
+.wash-control-icon--conditioner {
+    color: #c084fc;
+}
+
+.wash-control-icon--blowDryer {
+    color: #fb923c;
+}
+
+.wash-control-icon--cleanTub {
+    color: #86efac;
+}

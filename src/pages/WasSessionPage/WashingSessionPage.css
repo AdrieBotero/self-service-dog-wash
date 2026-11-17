@@ -4,17 +4,17 @@
     align-items: center;
     gap: 24px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
 }
 
 .washing-session-details {
 
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
 
     min-width: 0;
-    padding: 24px;
+    padding: 8px;
 
     background: #192638;
     border: 2px solid #2a3c52;
@@ -52,7 +52,7 @@
 .washing-session-dog-image {
     display: block;
     width: 100%;
-    max-width: 360px;
+    max-width: 300px;
     height: auto;
     object-fit: contain;
 }
@@ -91,7 +91,7 @@
 .washing-session {
     width: 100%;
     box-sizing: border-box;
-    padding: 24px 40px;
+    padding: 12px 40px;
 }
 
 .washing-session-detail-row {
@@ -117,4 +117,24 @@
     justify-content: center;
     gap: 16px;
     width: 100%;
+}
+
+.washing-session__instructions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+
+    padding: 12px 24px;
+    margin-top: 16px;
+
+    background: #19283b;
+    border: 2px solid #30445e;
+    border-radius: 20px;
+
+    text-align: left;
+}
+
+.washing-session__instructions svg {
+    color: #f59e0b;
+    flex-shrink: 0;
 }
