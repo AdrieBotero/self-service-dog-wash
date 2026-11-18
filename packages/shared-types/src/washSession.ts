@@ -1,4 +1,4 @@
-export type WashMode = "soap" | "rinse" | "conditioner" | "blowDryer" | "cleanTub";
+export type WashMode = "off" | "soap" | "rinse" | "conditioner" | "blowDryer" | "cleanTub";
 
 export type WashSessionStatus = "active" | "completed"
 

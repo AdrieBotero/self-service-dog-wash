@@ -30,7 +30,7 @@ app.post('/api/payments', async (req, res) => {
         sessionId: "session_123",
         stationId: "station_01",
         status: "active",
-        activeMode: "soap",
+        activeMode: "off",
         washStartedAt: startedAt.toISOString(),
         washEndedAt: endsAt.toISOString()
     };
@@ -68,6 +68,7 @@ app.patch("/api/wash-sessions/:sessionId/complete", (req, res) => {
         });
     }
     washSession.status = "completed";
+    washSession.activeMode = "off";
 
     res.json(washSession);
 });

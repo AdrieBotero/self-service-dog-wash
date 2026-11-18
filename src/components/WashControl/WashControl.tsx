@@ -1,5 +1,5 @@
 import type { WashMode } from "@pupwash/shared-types";
-import { Bubbles, Droplet, PawPrint, Wind, Sparkles } from "lucide-react";
+import { Bubbles, Droplet, PawPrint, Wind, Sparkles, Power } from "lucide-react";
 import './WashControl.css'
 
 interface WashControlProps {
@@ -11,6 +11,7 @@ interface WashControlProps {
 }
 
 const washModeIcons = {
+    off: Power,
     soap: Bubbles,
     rinse: Droplet,
     conditioner: PawPrint,

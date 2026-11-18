@@ -46,6 +46,9 @@
 .wash-control.is-active .wash-control-status {
     background: #249ef5;
 }
+.wash-control-icon--off {
+    color: #f87171;
+}
 
 .wash-control-icon--soap {
     color: #38bdf8;
